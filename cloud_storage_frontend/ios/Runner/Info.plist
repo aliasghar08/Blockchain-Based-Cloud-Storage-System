@@ -66,6 +66,8 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSFaceIDUsageDescription</key>
+	<string>This app requires Face ID for secure authentication.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>This app needs access to your photo library to select files for uploading.</string>
 	<key>NSDocumentsFolderUsageDescription</key>

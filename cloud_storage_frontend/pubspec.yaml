@@ -44,12 +44,15 @@ dev_dependencies:
     sdk: flutter
   integration_test:
     sdk: flutter
+  flutter_launcher_icons: ^0.14.2
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/Deceptra_logo.jpg"
+  min_sdk_size: 21
 
   # The "flutter_lints" package below contains a set of recommended lints to
-  # encourage good coding practices. The lint set provided by the package is
-  # activated in the `analysis_options.yaml` file located at the root of your
-  # package. See that file for information about deactivating specific lint
-  # rules and activating additional ones.
   flutter_lints: ^6.0.0
 
 # For information on the generic Dart part of this file, see the
