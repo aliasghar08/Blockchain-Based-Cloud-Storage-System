@@ -8,9 +8,20 @@ workflows:
       cocoapods: default
     scripts:
       - name: Install dependencies
-        script: flutter packages get
+        script: |
+          cd $CM_CLONE_DIR/cloud_storage_frontend
+          flutter pub get
       - name: Build iOS IPA
-        script: flutter build ipa --release --no-codesign
+        script: |
+          cd $CM_CLONE_DIR/cloud_storage_frontend
+          flutter build ipa --release --no-codesign
+      - name: Package unsigned IPA
+        script: |
+          cd $CM_CLONE_DIR/cloud_storage_frontend
+          mkdir -p build/ios/ipa/Payload
+          cp -r build/ios/archive/Runner.xcarchive/Products/Applications/Runner.app build/ios/ipa/Payload/
+          cd build/ios/ipa
+          zip -r -q unsigned_app.ipa Payload
     artifacts:
       - build/ios/ipa/*.ipa
       - build/ios/archive/*.xcarchive
