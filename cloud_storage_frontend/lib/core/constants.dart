@@ -1,0 +1,10 @@
+class Constants {
+  static const String pinataJwt = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3JtYXRpb24iOnsiaWQiOiJhNjEzNDFiNS1mNDc4LTRiNWYtYjNiNS05OGI0MjdhN2VmMTgiLCJlbWFpbCI6ImFsaWFzZ2hhcmlubm9jZW50QHlhaG9vLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJwaW5fcG9saWN5Ijp7InJlZ2lvbnMiOlt7ImRlc2lyZWRSZXBsaWNhdGlvbkNvdW50IjoxLCJpZCI6IkZSQTEifSx7ImRlc2lyZWRSZXBsaWNhdGlvbkNvdW50IjoxLCJpZCI6Ik5ZQzEifV0sInZlcnNpb24iOjF9LCJtZmFfZW5hYmxlZCI6ZmFsc2UsInN0YXR1cyI6IkFDVElWRSJ9LCJhdXRoZW50aWNhdGlvblR5cGUiOiJzY29wZWRLZXkiLCJzY29wZWRLZXlLZXkiOiI5YTU3NTQyZjJkYTI5ZDU2OTI3OCIsInNjb3BlZEtleVNlY3JldCI6IjFjMTU4YWNjMDVjMzIzMGVkMDg4NTZmZmE0OGNmMmIwNzI4NzI5NzFhMDU3ZjBkYTAwNzE1YWMwZTBkZmFmODciLCJleHAiOjE4MTgzNzQyODB9.FirfDasrHJsuwzpt4rIgp8Ik8r-STBeGXv6vsnEnOX4';
+  
+  static const String rpcUrl = 'http://10.0.2.2:8545';
+  static const int chainId = 31337;
+  static const String contractAddress = 'YOUR_CONTRACT_ADDRESS_HERE';
+
+  // Secure Storage Keys
+  static const String privateKeyStorageKey = 'wallet_private_key';
+}

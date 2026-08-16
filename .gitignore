@@ -1,0 +1,14 @@
+# General
+.DS_Store
+.vscode/
+.idea/
+*.log
+node_modules/
+.env
+
+# Flutter/Dart
+.dart_tool/
+build/
+*.iml
+.flutter-plugins
+.flutter-plugins-dependencies

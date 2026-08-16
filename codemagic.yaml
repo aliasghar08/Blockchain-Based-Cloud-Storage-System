@@ -1,0 +1,16 @@
+workflows:
+  ios-release:
+    name: iOS release build
+    working_directory: cloud_storage_frontend
+    environment:
+      flutter: stable
+      xcode: latest
+      cocoapods: default
+    scripts:
+      - name: Install dependencies
+        script: flutter packages get
+      - name: Build iOS IPA
+        script: flutter build ipa --release --no-codesign
+    artifacts:
+      - build/ios/ipa/*.ipa
+      - build/ios/archive/*.xcarchive
