@@ -41,8 +41,6 @@
 					<string>flutter</string>
 					<key>UISceneDelegateClassName</key>
 					<string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
-					<key>UISceneStoryboardFile</key>
-					<string>Main</string>
 				</dict>
 			</array>
 		</dict>
@@ -51,8 +49,6 @@
 	<true/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
-	<key>UIMainStoryboardFile</key>
-	<string>Main</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
@@ -72,5 +68,7 @@
 	<string>This app needs access to your photo library to select files for uploading.</string>
 	<key>NSDocumentsFolderUsageDescription</key>
 	<string>This app needs access to documents to select files for uploading.</string>
+	<key>NSUserNotificationUsageDescription</key>
+	<string>Deceptra sends you notifications when files are uploaded or shared successfully.</string>
 </dict>
 </plist>

@@ -11,7 +11,8 @@ void main() async {
   
   await NotificationService.initialize();
 
-  final walletProvider = WalletProvider()..init();
+  final walletProvider = WalletProvider();
+  await walletProvider.init();
 
   runApp(
     WalletState(

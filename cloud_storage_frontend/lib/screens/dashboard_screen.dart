@@ -29,15 +29,17 @@ class _DashboardScreenState extends State<DashboardScreen> {
     });
   }
   Future<void> _uploadFile() async {
-    final PlatformFile? result = await FilePicker.pickFile();
+    final PlatformFile? pickedFile = await FilePicker.pickFile(
+      type: FileType.any,
+    );
 
-    if (result == null || result.path == null) {
+    if (pickedFile == null || pickedFile.path == null) {
       return;
     }
 
-    final File file = File(result.path!);
-    final String fileName = result.name;
-    final int fileSize = await result.length();
+    final File file = File(pickedFile.path!);
+    final String fileName = pickedFile.name;
+    final int fileSize = await pickedFile.length();
     final String fileType = CustomMimeService.lookupMimeType(file.path);
 
     if (!mounted) return;
@@ -152,26 +154,27 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   ),
                 );
 
+                final navigator = Navigator.of(context);
+                final messenger = ScaffoldMessenger.of(context);
+                final provider = WalletState.of(context);
+
                 try {
-                  final provider = WalletState.of(context);
                   await provider.blockchainService.shareFile(file.cid, address);
                   
-                  if (!context.mounted) return;
-                  Navigator.of(context).pop(); 
-                  ScaffoldMessenger.of(context).showSnackBar(
+                  navigator.pop();
+                  messenger.showSnackBar(
                     const SnackBar(content: Text('Access granted successfully!')),
                   );
                   
                   await NotificationService.showNotification(
                     id: DateTime.now().millisecondsSinceEpoch.remainder(100000),
                     title: 'File Shared',
-                    body: 'You shared "\${file.fileName}" with \${address.substring(0,6)}...\${address.substring(address.length - 4)}',
+                    body: 'You shared "${file.fileName}" with ${address.substring(0,6)}...${address.substring(address.length - 4)}',
                   );
                 } catch (e) {
-                  if (!context.mounted) return;
-                  Navigator.of(context).pop(); 
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('Sharing failed: \$e'), backgroundColor: Colors.red),
+                  navigator.pop();
+                  messenger.showSnackBar(
+                    SnackBar(content: Text('Sharing failed: $e'), backgroundColor: Colors.red),
                   );
                 }
               },
@@ -211,10 +214,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     const SnackBar(content: Text('Downloading file...')),
                   );
                   try {
-                    final downloadedPath = await IpfsGatewayService.downloadFile(file.cid, file.fileName);
+                    final path = await IpfsGatewayService.downloadFile(file.cid, file.fileName);
                     if (context.mounted) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('Downloaded to \$downloadedPath'), duration: const Duration(seconds: 4)),
+                        SnackBar(content: Text('Downloaded to $path'), duration: const Duration(seconds: 4)),
                       );
                     }
                   } catch (e) {
@@ -280,8 +283,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
         itemCount: files.length,
         itemBuilder: (context, index) {
           final file = files[index];
-          final dateStr = CustomDateFormatter.formatDate(file.uploadTime.toLocal());
-          
           return Card(
             elevation: 2,
             margin: const EdgeInsets.only(bottom: 16),
@@ -325,7 +326,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             ),
                             const SizedBox(width: 8),
                             Text(
-                              '• \$dateStr',
+                              '• ${CustomDateFormatter.formatDate(file.uploadTime.toLocal())}',
                               style: Theme.of(context).textTheme.bodySmall?.copyWith(
                                 color: Colors.grey.shade600,
                               ),

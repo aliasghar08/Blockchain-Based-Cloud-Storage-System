@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:deceptra/providers/wallet_provider.dart';
 import 'package:deceptra/providers/wallet_state.dart';
 import 'package:deceptra/screens/dashboard_screen.dart';
 import 'package:deceptra/screens/signup_screen.dart';
