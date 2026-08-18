@@ -8,11 +8,10 @@ import 'package:deceptra/screens/dashboard_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
+
   await NotificationService.initialize();
 
   final walletProvider = WalletProvider();
-  await walletProvider.init();
 
   runApp(
     WalletState(
@@ -20,6 +19,12 @@ void main() async {
       child: const CloudStorageApp(),
     ),
   );
+
+  // Defer init() to run after the first frame so the app renders
+  // before triggering biometric prompts (fixes black screen on iOS).
+  WidgetsBinding.instance.addPostFrameCallback((_) {
+    walletProvider.init();
+  });
 }
 
 class CloudStorageApp extends StatelessWidget {
